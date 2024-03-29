@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "MyRecepie",
+    "slug": "MyRecepie",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
