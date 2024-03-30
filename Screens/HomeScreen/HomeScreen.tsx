@@ -1,13 +1,20 @@
+import { navigate } from '@react-navigation/routers/lib/typescript/src/CommonActions';
 import React from 'react';
 
-import { View, Text } from "react-native"
+import { View, Text, Pressable, Button } from "react-native"
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     return (
 
-        <View>
+        <SafeAreaView style={{flex:1}}>
+            <View style={{flex:1 ,alignItems:"center", justifyContent:"center"}}>
             <Text>Home Screen</Text>
-        </View>
+            <View style={{height:10}}></View>
+            <Button title='Search Screen' onPress={(e) => navigation.navigate("Search")} />
+            </View>
+        </SafeAreaView>
+
     )
 }
 

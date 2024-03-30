@@ -1,13 +1,19 @@
 import React from 'react';
 
-import { View, Text } from "react-native"
-
-const SavedScreen = () => {
+import { View, Text, Pressable } from "react-native"
+import { SafeAreaView } from 'react-native-safe-area-context';
+const SavedScreen = ({ navigation }) => {
     return (
 
+        <SafeAreaView style={{flex:1}}>
         <View>
-            <Text>Saved Screen</Text>
+            <Pressable onPress={(e) => navigation.navigate("Search")}>
+                <Text>Saved Screen</Text>
+
+
+            </Pressable>
         </View>
+    </SafeAreaView>
     )
 }
 

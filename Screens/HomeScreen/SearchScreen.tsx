@@ -1,13 +1,17 @@
 import React from 'react';
 
 import { View, Text } from "react-native"
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
     return (
 
-        <View>
-            <Text>Search Screen</Text>
-        </View>
+        <SafeAreaView style={{flex:1}}>
+            <View>
+                <Text>Search Screen</Text>
+            </View>
+
+        </SafeAreaView>
     )
 }
 
