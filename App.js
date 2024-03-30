@@ -15,8 +15,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <Provider store={rootReducer}>
-      <NavigationContainer >
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName={"SelectAreaScreen"} screenOptions={{ headerShown: false }}>
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
           <Stack.Screen name="SelectAreaScreen" component={SelectAreaScreen} />
           <Stack.Screen name="HomeScreenNavigation" component={HomeScreenNavigation} />
