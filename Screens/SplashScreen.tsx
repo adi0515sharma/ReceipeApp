@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, Pressable, Button } from "react-native"
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import Slices, { increment, decrement } from '../Redux/Slices';
+import Slices, { increment, decrement } from '../Redux/SelectAreaFoodSlice';
 import { RootState } from '../Redux/Store';
 
 const SplashScreen = ({ navigation }) => {
