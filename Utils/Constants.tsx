@@ -14,3 +14,4 @@ export const ALL_AREA = `${BASE_URL}/list.php?a=list`
 
 export const ALL_AREA_MEALS = `${BASE_URL}/filter.php?a=`
 export const SEARCH_MEALS = `${BASE_URL}/search.php?s=`
+export const GET_MEAL = `${BASE_URL}/lookup.php?i=`

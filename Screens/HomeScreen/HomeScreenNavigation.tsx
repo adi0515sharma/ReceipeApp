@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './HomeScreen';
 import SavedScreen from './ShowSaved';
 import SearchScreen from './SearchScreen';
+import FullScreenFoodDetail from './FullScreenFoodDetail';
 
 
 const HomeStack = createNativeStackNavigator();
@@ -16,6 +17,8 @@ function HomeScreenTab() {
   return (<HomeStack.Navigator screenOptions={{ headerShown: false }}>
     <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
     <HomeStack.Screen name="Search" component={SearchScreen} />
+    <HomeStack.Screen name="FullScreenMeal" component={FullScreenFoodDetail} />
+
   </HomeStack.Navigator>)
 }
 

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import { FlatList, Image, Pressable, StyleSheet, Text, View } from "react-native"
 import { GetAllMealsByArea } from "../../API/ListArea"
+import FullScreenPopup from "../Component/FullScreenLoader";
 
 
-const MealsView = ({ item }) => {
-    return <Pressable style={styles.gridItem}>
+const MealsView = ({ item, navigateTo }) => {
+    return <Pressable style={styles.gridItem} onPress={() => {
+        navigateTo()
+    }}>
 
         <View style={{ flex: 1, width: "100%", height: "100%", alignItems: "center" }}>
             <Image source={{
@@ -26,20 +29,25 @@ const MealsView = ({ item }) => {
 const ContinentalFoodScreen = ({ navigateTo, area }) => {
 
     const [meals, setMeals] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         GetAllMealsByArea(area).then((response) => {
+            setLoading(false)
             setMeals(response)
         })
     }, [])
 
     return (<View style={{ flex: 1 }}>
 
+        <FullScreenPopup visible={loading} onClose={null} />
+
         <FlatList
 
             data={meals}
             style={styles.foodFlatList}
-            renderItem={({ item }) => <MealsView item={item} />}
+            renderItem={({ item }) => <MealsView item={item} navigateTo={() => { navigateTo(item.idMeal) }} />}
             numColumns={2}
             keyExtractor={(item, index) => index.toString()}
             initialNumToRender={4} // Example value, adjust as needed
@@ -122,7 +130,7 @@ const styles = StyleSheet.create({
     },
 
 
-    
+
 });
 
 export default ContinentalFoodScreen

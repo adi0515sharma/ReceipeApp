@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ALL_AREA, ALL_AREA_MEALS, SEARCH_MEALS } from "../Utils/Constants";
+import { ALL_AREA, ALL_AREA_MEALS, GET_MEAL, SEARCH_MEALS } from "../Utils/Constants";
+import { MealReponse, parseApiResponse } from "./Models";
 
 const GetAllArea = async() =>{
     const response = await axios.get(ALL_AREA)
@@ -33,6 +34,20 @@ export const SearchSuggestionMeals = async(MealName) =>{
   }));
   
   return meals
+}
+
+export const GetMealById = async(mealId) : Promise<MealReponse> =>{
+  console.log(`${GET_MEAL}${mealId}`)
+  const response = await axios.get(`${GET_MEAL}${mealId}`)
+
+  const mealResponse = response.data
+  
+  console.log(mealResponse)
+  let meal = null
+  if(mealResponse.meals != null && mealResponse.meals.length > 0){
+    meal = mealResponse.meals[0]
+  }
+  return meal
 }
 
 export const SearchedMeals = async(MealName) =>{
@@ -104,5 +119,10 @@ export function getAreaImage(strArea) {
         return require('../Utils/AreaFood/Unknown.png'); // Default image for unknown areas
     }
   }
+
+
+
+
+
 
 export default GetAllArea;

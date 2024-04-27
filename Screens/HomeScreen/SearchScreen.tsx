@@ -111,7 +111,7 @@ const SearchScreen = ({ navigation }) => {
                                     key={item.key}
                                     item={item}
 
-                                    onTap={() => null}
+                                    onTap={() => navigation.navigate("FullScreenMeal", {mealId : item.idMeal}) }
                                 />
                             )}
                         />
@@ -142,7 +142,7 @@ const SearchScreen = ({ navigation }) => {
                                     key={item.key}
                                     item={item}
 
-                                    onTap={() => null}
+                                    onTap={() => navigation.navigate("FullScreenMeal", {mealId : item.idMeal})}
                                 />
                             )}
                         />

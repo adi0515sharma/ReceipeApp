@@ -94,7 +94,15 @@ const HomeScreen = ({ navigation }) => {
 
                 <TabView
                     navigationState={{ index, routes }}
-                    renderScene={({ route, jumpTo }) => <ContinentalFoodScreen navigateTo={null} area={route.key} />}
+                    renderScene={({ route, jumpTo }) => 
+                        <ContinentalFoodScreen 
+                            navigateTo={(mealId)=>{
+                                console.log(mealId)
+                                navigation.navigate("FullScreenMeal", {mealId : mealId})
+                            }} 
+                            area={route.key} 
+                            />
+                    }
                     onIndexChange={setIndex}
 
                     initialLayout={{ width: layout.width }}
