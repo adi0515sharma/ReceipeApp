@@ -53,6 +53,7 @@ const HomeScreen = ({ navigation }) => {
                         borderRadius: 10,
                         alignItems: "center",
                         borderWidth: 1,
+                        marginVertical:14,
                         borderColor: "black"
 
                     }}>
@@ -66,7 +67,6 @@ const HomeScreen = ({ navigation }) => {
                         <Icon name="search-outline" size={20} />
 
                     </TouchableOpacity>
-                    <View style={{ height: 14 }}></View>
 
 
                     <FlatList

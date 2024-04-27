@@ -8,7 +8,7 @@ import SplashScreen from './Screens/SplashScreen';
 import { Provider } from 'react-redux';
 import { useFonts } from 'expo-font';
 import { Text } from 'react-native';
-import {store} from './Redux/Store';
+import { store } from './Redux/Store';
 
 import PoppinsRegular from './assets/fonts/Poppins-Regular.ttf';
 import PoppinsBold from './assets/fonts/Poppins-Bold.ttf';
@@ -17,6 +17,8 @@ import PoppinsSemiBold from './assets/fonts/Poppins-SemiBold.ttf';
 
 import persistStore from 'redux-persist/es/persistStore'
 import { PersistGate } from 'redux-persist/integration/react';
+import { RealmProvider } from '@realm/react';
+import MealSaved from './Local/SavedItem';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,15 +42,17 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={"SelectAreaScreen"} screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="SplashScreen" component={SplashScreen} />
-          <Stack.Screen name="SelectAreaScreen" component={SelectAreaScreen} />
-          <Stack.Screen name="HomeScreenNavigation" component={HomeScreenNavigation} />
-        </Stack.Navigator>
-      </NavigationContainer>
+        <RealmProvider schema={[MealSaved]}>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName={"SelectAreaScreen"} screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="SplashScreen" component={SplashScreen} />
+              <Stack.Screen name="SelectAreaScreen" component={SelectAreaScreen} />
+              <Stack.Screen name="HomeScreenNavigation" component={HomeScreenNavigation} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </RealmProvider>
       </PersistGate>
-      
+
 
     </Provider>
   );

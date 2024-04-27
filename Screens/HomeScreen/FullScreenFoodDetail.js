@@ -5,15 +5,20 @@ import { GetMealById } from '../../API/ListArea';
 import FullScreenPopup from '../Component/FullScreenLoader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useQuery, useRealm } from '@realm/react';
+import MealSaved from '../../Local/SavedItem';
 
 
 export default function FullScreenFoodDetail({ navigation, route }) {
 
   const [mealData, setMealData] = useState(null)
   const [ingridents, setIngridents] = useState()
-
   const [loading, setLoading] = useState(false)
+  const [saved, setSaved] = useState(false)
 
+  const realm = useRealm();
+  const tasks = useQuery(MealSaved);
 
   useEffect(() => {
 
@@ -49,8 +54,18 @@ export default function FullScreenFoodDetail({ navigation, route }) {
 
   }, [])
 
+  useEffect(() => {
+    if (route.params.mealId == null) {
+      return
+    }
+    console.log("============= Update Saved List ================")
+    console.log(JSON.stringify(tasks))
+    setSaved(tasks.filtered(`idMeal == "${route.params.mealId}"`).length > 0);
+    console.log("============= Update Saved List ================")
 
+  }, [tasks])
   const getIngrident = (ingridents) => {
+
 
     if (ingridents == null) {
       return
@@ -122,7 +137,48 @@ export default function FullScreenFoodDetail({ navigation, route }) {
 
               <View style={{ flex: 1 }}>
 
-                <Image source={{ uri: mealData.strMealThumb }} style={{ width: "100%", height: 300, borderColor: "red", borderWidth: 2, borderRadius: 10 }} />
+                <View>
+                  <Image source={{ uri: mealData.strMealThumb }} style={{ width: "100%", height: 300, borderColor: "red", borderWidth: 2, borderRadius: 10 }} />
+                  <View style={{
+                    position: "absolute",
+                    right: 0,
+                    top: 0,
+                    backgroundColor: "rgba(0, 0, 0, 0.3)", // Transparent black color
+                    borderBottomLeftRadius: 10,
+                    padding: 5, // Adjust padding as needed
+                  }}>
+                    <Icon
+
+                      onPress={() => {
+
+                        if (!saved) {
+                          realm.write(() => {
+                            realm.create("MealSaved", mealData);
+                          });
+                        }
+                        else {
+                          console.log(typeof mealData)
+                          realm.write(() => {
+                            realm.delete(
+                              realm.objects('MealSaved').filter(meal => meal.idMeal == mealData.idMeal)
+
+                            )
+                          })
+                        }
+
+
+                      }}
+                      name={"bookmark"}
+
+                      color={saved ? "blue" : "black"} size={30} style={{
+
+                        padding: 10
+                      }}
+
+                    />
+                  </View>
+
+                </View>
 
                 {getIngrident(ingridents)}
 

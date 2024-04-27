@@ -71,6 +71,8 @@ const SearchScreen = ({ navigation }) => {
                 borderRadius: 10,
                 alignItems: "center",
                 borderWidth: 1,
+                marginVertical:14,
+
                 borderColor: "black",
             }}>
 

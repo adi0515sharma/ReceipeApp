@@ -8,15 +8,15 @@ const SearchItem = ({ item, onTap }) => {
             onPress={(e) => onTap()}
             style={{ borderRadius: 6, paddingHorizontal: 6 }}
         >
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={{ flexDirection: "row", alignItems: "top" }}>
 
                 <Image source={{
                     uri: item.strMealThumb,
                 }} style={{ width: 100, height: 100 }} />
                 <View style={{ width: 5 }}></View>
                 <View style={{ flex: 1, height: "100%", paddingHorizontal: 3 }}>
-                    <View style={{ justifyContent: "space-between", flexDirection: "row", alignItems: "center" }}>
-                        <Text style={{ fontFamily: "Poppins-Bold", fontSize: 18 }}>{item.strMeal}</Text>
+                    <View style={{ justifyContent: "space-between", flexDirection: "row", alignItems: "top", }}>
+                        <Text style={{ fontFamily: "Poppins-Bold", fontSize: 18, width:"70%" }}>{item.strMeal}</Text>
                         <Text style={{ fontFamily: "Poppins-Regular", fontSize: 14 }}>{item.strCategory}</Text>
                     </View>
                     <View style={{ flexDirection: "row" }}>

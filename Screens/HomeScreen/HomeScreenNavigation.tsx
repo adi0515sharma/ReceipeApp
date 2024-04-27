@@ -22,8 +22,6 @@ function HomeScreenTab() {
   </HomeStack.Navigator>)
 }
 
-const SavedStack = createNativeStackNavigator();
-
 
 const Tab = createBottomTabNavigator();
 
