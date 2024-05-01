@@ -2,6 +2,13 @@
 
 MaterChef is a React Native food recipe application that provides users with a seamless cooking experience. 
 
+
+## Video Demonstration
+
+Check out the video demonstration of MaterChef:
+![MaterChef Demo Video](./assets/WhatsApp Video 2024-05-01 at 8.04.45 PM.mp4)
+
+
 ## Key Features
 
 - Browse a wide range of recipes.
@@ -25,3 +32,17 @@ cd ReceipeApp
 ```
 npm install
 ```
+
+3. Run the application:
+
+for android
+```
+npm run android
+```
+
+for ios
+```
+npm run ios
+```
+
+
