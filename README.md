@@ -17,3 +17,11 @@ MaterChef is a React Native food recipe application that provides users with a s
 ```
 git clone https://github.com/adi0515sharma/ReceipeApp.git
 ```
+
+2. Install dependencies:
+```
+cd ReceipeApp
+```
+```
+npm install
+```
