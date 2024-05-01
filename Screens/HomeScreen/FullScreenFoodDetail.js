@@ -5,9 +5,10 @@ import { GetMealById } from '../../API/ListArea';
 import FullScreenPopup from '../Component/FullScreenLoader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useQuery, useRealm } from '@realm/react';
 import MealSaved from '../../Local/SavedItem';
+import { primary_color, secondary_primary_color, white } from '../../assets/color';
 
 
 export default function FullScreenFoodDetail({ navigation, route }) {
@@ -117,7 +118,7 @@ export default function FullScreenFoodDetail({ navigation, route }) {
 
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1  , backgroundColor:white}}>
       <View style={styles.container}>
 
         <FullScreenPopup visible={loading} onClose={null} />
@@ -126,7 +127,15 @@ export default function FullScreenFoodDetail({ navigation, route }) {
           <View style={{ flex: 1 }}>
 
             <View style={{ width: "100%" }}>
-              <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 20, padding: 10, borderBottomWidth: 1, borderBottomColor: "black" }}>
+              <Text style={{ 
+                fontFamily: "Poppins-SemiBold", 
+                fontSize: 20, 
+                paddingHorizontal: 10,
+                paddingVertical:15, 
+                borderBottomWidth: 1, 
+                borderBottomColor: "black",
+                includeFontPadding:false
+              }}>
                 {mealData?.strMeal}
               </Text>
             </View>
@@ -138,13 +147,14 @@ export default function FullScreenFoodDetail({ navigation, route }) {
               <View style={{ flex: 1 }}>
 
                 <View>
-                  <Image source={{ uri: mealData.strMealThumb }} style={{ width: "100%", height: 300, borderColor: "red", borderWidth: 2, borderRadius: 10 }} />
+                  <Image source={{ uri: mealData.strMealThumb }} style={{ width: "100%", height: 300, borderColor: saved ?  primary_color : secondary_primary_color, borderWidth: 5, borderRadius: 10 }} />
                   <View style={{
                     position: "absolute",
                     right: 0,
                     top: 0,
-                    backgroundColor: "rgba(0, 0, 0, 0.3)", // Transparent black color
+                    backgroundColor: "rgba(0, 0, 0, 0.15)", // Transparent black color
                     borderBottomLeftRadius: 10,
+                    borderTopRightRadius:10,
                     padding: 5, // Adjust padding as needed
                   }}>
                     <Icon
@@ -168,9 +178,11 @@ export default function FullScreenFoodDetail({ navigation, route }) {
 
 
                       }}
+
+
                       name={"bookmark"}
 
-                      color={saved ? "blue" : "black"} size={30} style={{
+                      color={saved ? primary_color : secondary_primary_color} size={30} style={{
 
                         padding: 10
                       }}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { View, Text, Pressable, StyleSheet, Button, FlatList } from "react-native"
+import { View, Text, Pressable, StyleSheet, Button, FlatList, BackHandler } from "react-native"
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { fetchDataRequest, updateSelected } from '../Redux/SelectAreaFoodSlice';
@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getAreaImage } from '../API/ListArea';
+import { CommonActions } from '@react-navigation/native';
+import { primary_color, secondary_primary_color, white } from '../assets/color';
 
 
 
@@ -54,8 +56,12 @@ const SelectAreaScreen = ({ navigation }) => {
             return
         }
         
-
-        navigation.navigate("HomeScreenNavigation")
+        navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'HomeScreenNavigation' }], // Replace 'NextScreen' with the name of your next screen
+            })
+          );
     };
 
 
@@ -103,7 +109,7 @@ const SelectAreaScreen = ({ navigation }) => {
 
 
                 <View>
-                    <Button title={data.selectedContinantal.length > 0 ? 'Proceed to home' : "Please Select Atleast 1"} onPress={handleFetchData}></Button>
+                    <Button color={primary_color} title={data.selectedContinantal.length > 0 ? 'Proceed to home' : "Please Select Atleast 1"} onPress={handleFetchData}></Button>
 
                 </View>
             </View>
@@ -125,7 +131,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         borderRadius: 10,
-        borderColor: "#ccc",
+        borderColor: secondary_primary_color,
         borderWidth: 4,
         marginTop: 5,
         marginHorizontal: 2
@@ -135,7 +141,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         borderRadius: 10,
-        borderColor: "green",
+        borderColor: primary_color,
         borderWidth: 4,
         marginTop: 5,
         marginHorizontal: 2
@@ -150,7 +156,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: '#eaeaea',
+        backgroundColor: white,
         paddingVertical: 15,
         paddingHorizontal: 10
     },

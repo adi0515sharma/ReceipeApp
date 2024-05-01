@@ -1,6 +1,7 @@
 import { Image, TouchableOpacity, Text, View } from "react-native"
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import { primary_color } from "../../assets/color";
 
 const SearchItem = ({ item, onTap }) => {
     return (
@@ -61,7 +62,8 @@ export const Separator = () => (
         style={{
             height: 1,
             marginVertical: 10,
-            backgroundColor: 'gray',
+            backgroundColor: primary_color,
+            
         }}
     />
 );

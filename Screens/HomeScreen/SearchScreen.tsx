@@ -10,6 +10,7 @@ import SearchItem from '../Component/SearchItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateLastSuggestedList } from '../../Redux/LastSuggestionList';
 import { updateLastSearchedList } from '../../Redux/LastSearchResultSlice';
+import { primary_color, white } from '../../assets/color';
 
 const SearchScreen = ({ navigation }) => {
 
@@ -63,7 +64,7 @@ const SearchScreen = ({ navigation }) => {
     return (
 
 
-        <SafeAreaView style={{ flex: 1, marginHorizontal: 10 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor:white }}>
 
             <View style={{
                 flexDirection: "row",
@@ -71,9 +72,10 @@ const SearchScreen = ({ navigation }) => {
                 borderRadius: 10,
                 alignItems: "center",
                 borderWidth: 1,
-                marginVertical:14,
-
-                borderColor: "black",
+                marginTop:10,
+                marginBottom:4,
+                marginHorizontal:6,
+                borderColor: primary_color,
             }}>
 
                 <TextInput
@@ -90,7 +92,7 @@ const SearchScreen = ({ navigation }) => {
 
 
 
-                <Icon name="search-outline" size={20} onPress={(e) => {
+                <Icon name="search-outline" size={20} color={primary_color} onPress={(e) => {
                     onSearchPress()
                 }} />
 
@@ -104,7 +106,8 @@ const SearchScreen = ({ navigation }) => {
                         {/* This is suggestion list */}
                         <FlatList
                             data={lastSearchedSlice}
-                            ListHeaderComponent={shouldShowLastSearchTitle && <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 15,marginVertical:10 }}>Last Search Results...</Text>}
+                            ListHeaderComponent={shouldShowLastSearchTitle && <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 15,marginVertical:10 ,                marginHorizontal:6,
+                        }}>Last Search Results...</Text>}
                         
                             ItemSeparatorComponent={Separator}
                             // showsHorizontalScrollIndicator={false} // Disable the scrollbar
@@ -122,7 +125,7 @@ const SearchScreen = ({ navigation }) => {
                 }
 
                 {searchSuggestionVisiblity &&
-                    <View style={{ position: "absolute", top: 0, width: "100%", backgroundColor: "white", paddingVertical: 10, elevation: 15, borderColor: "#ccc", borderWidth: 2, borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}>
+                    <View style={{ position: "absolute", top: 0, width: "100%", backgroundColor: "white", paddingVertical: 10, elevation: 15, borderColor: primary_color, borderWidth: 2, borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}>
                         {/* This is suggestion list */}
                         <FlatList
                             data={lastSuggestionListSlice}

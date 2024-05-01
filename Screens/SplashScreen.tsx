@@ -1,34 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { View, Text, Pressable, Button } from "react-native"
+import Icon from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
-import Slices, { increment, decrement } from '../Redux/SelectAreaFoodSlice';
-import { RootState } from '../Redux/Store';
+import { primary_color, secondary_primary_color } from '../assets/color';
+import { useSelector } from 'react-redux';
+import { Image } from 'react-native';
 
 const SplashScreen = ({ navigation }) => {
+  const data = useSelector(state => state.area.value)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (data.selectedContinantal.length == 0) {
+        navigation.replace('SelectAreaScreen');
+      }
+      else{
+        navigation.replace('HomeScreenNavigation');
+      }
+       // Replace SplashScreen with SelectAreaScreen after 2 seconds
+    }, 2000);
 
-    const balance = useSelector((state) => state.counter.value);
-    const dispatch = useDispatch();
+    return () => clearTimeout(timer); // Clear the timer on component unmount
+  }, []);
 
-    return (
+  return (
 
-        <SafeAreaView style={{flex:1}}>
-        <View>
-            <Pressable onPress={(e) => navigation.navigate("SelectAreaScreen")}>
-                <Text>Splash Screen</Text>
-                
-                <View style={{flexDirection:"row"}}>
-                <Button title="+" onPress={(e)=>{dispatch(increment())}}></Button>
-                <Text>{balance}</Text>
-                <Button title="-" onPress={(e)=>{dispatch(decrement())}}></Button>
-                
-                </View>
-                
-            </Pressable>
-        </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: primary_color, justifyContent: "center", alignItems: "center" }}>
+      <Image 
+      style={{width:300, height:300}}
+      source={require("../Utils/AreaFood/MyReceipe.png")}
+       />
     </SafeAreaView>
-    )
+  )
 }
 
 export default SplashScreen

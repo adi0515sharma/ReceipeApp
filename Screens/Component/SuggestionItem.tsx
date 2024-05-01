@@ -1,5 +1,6 @@
 import { Image, TouchableOpacity, Text, View } from "react-native"
 import { getAreaImage } from "../../API/ListArea"
+import { primary_color } from "../../assets/color";
 
 
 const SearchSuggestion = ({ item, onTap }) => {
@@ -29,7 +30,7 @@ export  const Separator = () => (
       style={{
         height: 1,
         marginVertical: 10,
-        backgroundColor: 'gray',
+        backgroundColor: primary_color,
       }}
     />
   );

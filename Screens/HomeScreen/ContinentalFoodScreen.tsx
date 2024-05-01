@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { FlatList, Image, Pressable, StyleSheet, Text, View } from "react-native"
 import { GetAllMealsByArea } from "../../API/ListArea"
 import FullScreenPopup from "../Component/FullScreenLoader";
+import { useIsFocused } from "@react-navigation/native";
+import { primary_color } from "../../assets/color";
 
 
 const MealsView = ({ item, navigateTo }) => {
@@ -32,11 +34,14 @@ const ContinentalFoodScreen = ({ navigateTo, area }) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        setLoading(true)
-        GetAllMealsByArea(area).then((response) => {
-            setLoading(false)
-            setMeals(response)
-        })
+       
+            setLoading(true)
+            GetAllMealsByArea(area).then((response) => {
+                setLoading(false)
+                setMeals(response)
+            })
+        
+        
     }, [])
 
     return (<View style={{ flex: 1 }}>
@@ -71,8 +76,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         borderRadius: 10,
-        borderColor: "#ccc",
-        borderWidth: 4,
+        borderColor: primary_color,
+        borderWidth: 2,
         marginTop: 5,
         marginHorizontal: 2
     },
