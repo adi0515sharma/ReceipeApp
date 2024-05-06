@@ -1,6 +1,6 @@
-# MaterChef
+# MasterChef
 
-MaterChef is a React Native food recipe application that provides users with a seamless cooking experience. 
+MasterChef is a React Native food recipe application that provides users with a seamless cooking experience. 
 
 https://github.com/adi0515sharma/ReceipeApp/assets/75412544/c0200ba8-d2a1-48e6-90bb-60c31718d0f5
 
